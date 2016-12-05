@@ -1,0 +1,25 @@
+var express = require('express');
+var bodyParser = require('body-parser');
+var morgan = require('morgan');
+var config = require('./config');
+
+var app= express();
+
+app.use(bodyParser.urlencoded({ extended: true}));
+app.use(bodyParser.json());
+app.use(morgan('dev'));
+
+
+app.get('/',function(req, res) {
+	res.send('Hello world\n');
+
+});
+
+
+app.listen(config.port,function(err) {
+	if(err) {
+		console.log(err);
+	} else {
+		console.log("Escuchando en el puerto 8080. Anda");
+	}
+});
